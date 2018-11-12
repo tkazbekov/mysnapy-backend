@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const { Schema } = mongoose;
 
 const UsersSchema = new Schema({
+  role: String,
+  username: String,
   email: String,
   hash: String,
   salt: String,
@@ -27,7 +29,8 @@ UsersSchema.methods.generateJWT = function() {
   expirationDate.setDate(today.getDate() + 60);
 
   return jwt.sign({
-    email: this.email,
+    username: this.username,
+    role: this.role,
     id: this._id,
     exp: parseInt(expirationDate.getTime() / 1000, 10),
   }, 'secret');
@@ -36,6 +39,8 @@ UsersSchema.methods.generateJWT = function() {
 UsersSchema.methods.toAuthJSON = function() {
   return {
     _id: this._id,
+    username: this.username,
+    role: this.role,
     email: this.email,
     token: this.generateJWT(),
   };
