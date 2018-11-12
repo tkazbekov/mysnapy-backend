@@ -26,7 +26,9 @@ const PostSchema = new Schema({
   created_on: {
     type: Date,
     default: Date.now
-  }
+  },
+  country: String,
+  city: String
 });
 
 mongoose.model('Link', LinkSchema);

@@ -6,6 +6,6 @@ const postService = require('../../services/posts');
 
 router.get('/', auth.optional, postService.getAll);
 
-router.post('/', auth.required, postService.createPost);
+router.post('/', auth.optional, postService.createPost);
 
 module.exports = router;
