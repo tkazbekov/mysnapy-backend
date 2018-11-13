@@ -33,7 +33,7 @@ const createPost = (req, res, next) => {
       country: body.country,
       city: body.city
     });
-    return post.save().then(post => res.status(200).send('Success!'));
+    return post.save().then(post => res.status(200).send({ 'message' : 'Success!'}));
   });
 };
 
