@@ -8,8 +8,12 @@ const Link = mongoose.model('Link');
 // Get all posts
 
 const getAll = (req, res, next) => {
+  const size = parseInt(req.query.size);
+  const offset = parseInt(req.query.offset);
   return Post.find({})
-    .sort({created_on : -1})
+    .sort({'created_on' : -1})
+    .skip(offset)
+    .limit(size)
     .populate('images')
     .exec((err, posts) => {
       SocialNetwork.populate(posts, {
