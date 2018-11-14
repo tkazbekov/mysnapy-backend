@@ -9,6 +9,7 @@ const Link = mongoose.model('Link');
 
 const getAll = (req, res, next) => {
   return Post.find({})
+    .sort({created_on : -1})
     .populate('images')
     .exec((err, posts) => {
       SocialNetwork.populate(posts, {
