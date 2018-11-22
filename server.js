@@ -33,7 +33,7 @@ if(!isProduction) {
 }
 
 //Configure Mongoose
-mongoose.connect('mongodb://admin:ifvfbxleibn66223366@139.162.162.31/mysnapy');
+mongoose.connect('mongodb://172.104.140.145:27017');
 mongoose.set('debug', true);
 
 //Models & routes
